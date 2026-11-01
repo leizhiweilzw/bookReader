@@ -19,6 +19,8 @@ type Chapter struct {
 	Title  string `json:"title"`
 	Start  int    `json:"start"`  // start line index in raw lines
 	Length int    `json:"length"` // number of lines
+	IsRead bool   `json:"isRead"` // whether the chapter has been read (from DB)
+	ReadAt int64  `json:"readAt"` // unix timestamp when marked read
 }
 
 // Book holds the parsed contents of a TXT novel.

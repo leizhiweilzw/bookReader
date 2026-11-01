@@ -140,11 +140,245 @@ button {
 }
 
 /* ===== Reader screen ===== */
+.reader-layout {
+    flex: 1;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Sidebar (library) */
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    background: #f0ebe0;
+    border-right: 1px solid #e0d8c8;
+}
+
+.sidebar-header {
+    padding: 12px 14px 8px;
+    border-bottom: 1px solid #e0d8c8;
+}
+
+.sidebar-book-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #5a4a3a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sidebar-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-bottom: 1px solid #e0d8c8;
+}
+
+.sidebar-tab {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #8a7a6a;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.sidebar-tab:hover {
+    background: #e8e0d0;
+}
+
+.sidebar-tab.active {
+    background: #8b6f47;
+    color: #fff;
+}
+
+.sidebar-open-btn {
+    margin-left: auto;
+    background: #8b6f47;
+    color: #fff;
+    border: none;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+
+.sidebar-open-btn:hover {
+    background: #735a39;
+}
+
+.sidebar-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.sidebar-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-list::-webkit-scrollbar-thumb {
+    background: #c8b898;
+    border-radius: 3px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: background 0.15s;
+    gap: 8px;
+}
+
+.sidebar-item:hover {
+    background: #e8e0d0;
+}
+
+.sidebar-item.active {
+    background: #d9cdb8;
+}
+
+.sidebar-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.sidebar-item-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3a2a1a;
+    margin-bottom: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sidebar-item-meta {
+    font-size: 11px;
+    color: #9a8a7a;
+}
+
+.sidebar-item-remove {
+    background: transparent;
+    border: none;
+    color: #b0a898;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: all 0.15s;
+    flex-shrink: 0;
+}
+
+.sidebar-item:hover .sidebar-item-remove {
+    opacity: 1;
+}
+
+.sidebar-item-remove:hover {
+    background: #c8b898;
+    color: #fff;
+}
+
+.sidebar-list .empty {
+    text-align: left;
+    padding: 16px 12px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.sidebar-stats {
+    padding: 8px 12px;
+    font-size: 11px;
+    color: #9a8a7a;
+    border-bottom: 1px solid #e0d8c8;
+    margin-bottom: 4px;
+}
+
+/* Chapter directory items */
+.chapter-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 7px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-bottom: 2px;
+}
+
+.chapter-item:hover {
+    background: #e8e0d0;
+}
+
+.chapter-item .chapter-mark {
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.chapter-item .chapter-name {
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Unread chapters: default muted color */
+.chapter-item.unread {
+    color: #8a7a6a;
+}
+
+/* Read chapters: green checkmark, dimmer text */
+.chapter-item.read {
+    color: #6b8e5a;
+}
+
+.chapter-item.read .chapter-mark {
+    color: #6b8e5a;
+    font-weight: 700;
+}
+
+/* Current chapter: highlighted with accent background */
+.chapter-item.current {
+    background: #8b6f47;
+    color: #fff;
+}
+
+.chapter-item.current .chapter-mark {
+    color: #fff;
+    font-weight: 700;
+}
+
+.chapter-item.current:hover {
+    background: #735a39;
+}
+
 .reader {
     flex: 1;
     display: flex;
     flex-direction: column;
     height: 100%;
+    min-width: 0;
 }
 
 .reader-header {
@@ -207,6 +441,29 @@ button {
     min-width: 32px;
 }
 
+.align-group {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.align-btn {
+    padding: 6px 8px;
+    min-width: 30px;
+    font-size: 13px;
+}
+
+.align-btn span {
+    display: block;
+    width: 100%;
+}
+
+.align-btn.active {
+    background: #8b6f47;
+    color: #fff;
+    border-color: #8b6f47;
+}
+
 .chapter-select {
     padding: 6px 8px;
     border: 1px solid #d0c8b8;
@@ -246,7 +503,25 @@ button {
     color: #3a2e20;
     white-space: pre-wrap;
     word-break: break-word;
+    text-align: left;
     text-indent: 2em;
+}
+
+/* Display-area alignment (move the whole content block left/center/right).
+   Text itself stays left-aligned with first-line indent for natural reading. */
+.chapter-text.align-left {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.chapter-text.align-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chapter-text.align-right {
+    margin-left: auto;
+    margin-right: 0;
 }
 
 /* Progress bar */

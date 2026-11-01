@@ -5,6 +5,8 @@ export namespace main {
 	    title: string;
 	    start: number;
 	    length: number;
+	    isRead: boolean;
+	    readAt: number;
 	
 	    static createFrom(source: any = {}) {
 	        return new Chapter(source);
@@ -16,6 +18,8 @@ export namespace main {
 	        this.title = source["title"];
 	        this.start = source["start"];
 	        this.length = source["length"];
+	        this.isRead = source["isRead"];
+	        this.readAt = source["readAt"];
 	    }
 	}
 	export class ReadingProgress {
